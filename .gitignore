@@ -6,7 +6,7 @@ docs/html
 docs/tagfile.xml
 
 */bin/*
-#!*/bin/data/
+!*/bin/data/
 
 # for bin folder in root
 /bin/*
