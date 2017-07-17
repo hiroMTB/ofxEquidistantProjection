@@ -20,9 +20,12 @@ class ofApp: public ofBaseApp{
 		void gotMessage(ofMessage msg);
 
         ofxEquidistantProjection proj;
-        ofEasyCam cam;
     
         bool bEqui = true;
+        bool bDraw2dGuide = true;
+        bool bDraw3dGuide = true;
         ofSpherePrimitive sphere;
-
+        ofEasyCam normalCam;
+    
+        float radius = 0.1;
 };

@@ -6,42 +6,68 @@ void ofApp::setup(){
     ofBackground(0);
     ofSetColor(255);
     
-    sphere.setScale(.5);
+    sphere.setRadius(radius);
     sphere.setResolution(50);
     sphere.setPosition(0, 0, 0);
     sphere.setOrientation(ofVec3f(90,0,0));
     
     proj.setup();
-    cam.setPosition(0, 0, 10);
-    cam.setNearClip(0.1);
-    cam.setFarClip(10000);
-    cam.disableMouseInput();
+    proj.getCamera().setPosition(0,0,0);
+    proj.getCamera().setNearClip(0.001);
+    proj.getCamera().setFarClip(10000);
+    
+    normalCam.setNearClip(0.01);
+    normalCam.setDistance(0.5);
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
+
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
 
-    glm::vec3 eye = cam.getPosition();
-
     ofBackground(0);
+    ofPushMatrix();
+    bEqui ? proj.begin() : normalCam.begin();
     
-    if(bEqui) proj.begin(eye);
+    ofDrawAxis(10);
     
-    cam.begin();
     ofSetColor(255);
     sphere.drawWireframe();
-    cam.end();
+
+    if(bDraw3dGuide){
+        ofNoFill();
+        ofSetColor(0,0,255);
+        proj.drawEquidistantHemisphere(radius);
+    }
+
+    bEqui ? proj.end() : normalCam.end();
+    ofPopMatrix();
     
-    if(bEqui) proj.end();
+    if(bDraw2dGuide){
+        ofSetupScreenOrtho();
+        ofTranslate(ofGetWidth()/2, ofGetHeight()/2);
+        ofSetColor(0, 255, 0);
+        ofNoFill();
+        proj.draw2dCircles(ofGetWidth()/2);
+    }
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-    bEqui = !bEqui;
+    switch(key){
+        case 'e':
+            bEqui = !bEqui;
+            break;
+        case '2':
+            bDraw2dGuide = !bDraw2dGuide;
+            break;
+        case '3':
+            bDraw3dGuide = !bDraw3dGuide;
+            break;
+    }
 }
 
 //--------------------------------------------------------------
@@ -56,6 +82,7 @@ void ofApp::mouseMoved(int x, int y){
 
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button){
+    //sphere.setPosition(ofMap(x, 0, 1024, -25, 25), ofMap(y, 0, 1024, -25, 25), 5);
 }
 
 //--------------------------------------------------------------
