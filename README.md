@@ -1,3 +1,5 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/fh9f01w6yjqsyty7?svg=true)](https://ci.appveyor.com/project/hiroMTB/ofxequidistantprojection)
+
 # ofxEquidistantProjection (work in progress)
 openFrameworks addon for equidistant projection (hemisphere mapping, domemaster for planetarium material)
 based on this paper (Japanese)
