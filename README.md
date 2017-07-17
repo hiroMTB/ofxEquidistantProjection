@@ -3,7 +3,8 @@
 
 # ofxEquidistantProjection (work in progress)
 openFrameworks addon for equidistant projection (hemisphere mapping, domemaster for planetarium material)
-based on this paper (Japanese)
+
+Based on this paper (Japanese)
 
 + https://www.jstage.jst.go.jp/article/iteac/2008/0/2008__17-6-1_/_article/-char/ja/
 + https://www.jstage.jst.go.jp/article/iteac/2009/0/2009__13-2-1_/_article/-char/ja/
