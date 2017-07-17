@@ -7,5 +7,5 @@ https://www.jstage.jst.go.jp/article/iteac/2008/0/2008__17-6-1_/_article/-char/j
 + add GLSL3 shader
 + add geometry shader for polygon/line interporation
 + reconsider about naming, maybe ofxEquidistantCam? or ofxEisheyeCam?
-+ consider about puu request against ofxDomemaster (https://github.com/charlesveasey/ofxDomemaster)
++ consider about pull request against ofxDomemaster (https://github.com/charlesveasey/ofxDomemaster)
 + add Inv-equidistant projection shader which convert 2D texture data to 3D point data.
