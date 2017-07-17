@@ -20,10 +20,15 @@ public:
 #ifdef TARGET_OPENGLES
         static_assert(1, "ofxEquidistantCam does not support openGL ES");
 #else
+        
+        shader.setGeometryInputType(GL_TRIANGLE_STRIP);
+        shader.setGeometryOutputType(GL_TRIANGLE_STRIP);
+        shader.setGeometryOutputCount(3*4);
+
         if(ofIsGLProgrammableRenderer()){
-            shader.load("shadersGL3/shader");
+            shader.load("shadersGL3/shader.vert", "shadersGL3/shader.frag", "shadersGL3/shader.geom");
         }else{
-            shader.load("shadersGL2/shader");
+            shader.load("shadersGL2/shader.vert", "shadersGL2/shader.frag", "shadersGL2/shader.geom");
         }
 #endif
     }

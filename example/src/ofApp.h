@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "ofxEquidistantProjection.h"
+#include "ofxGui.h"
 
 class ofApp: public ofBaseApp{
 	public:
@@ -21,11 +22,15 @@ class ofApp: public ofBaseApp{
 
         ofxEquidistantProjection proj;
     
-        bool bEqui = true;
-        bool bDraw2dGuide = true;
-        bool bDraw3dGuide = true;
         ofSpherePrimitive sphere;
         ofEasyCam normalCam;
     
-        float radius = 0.1;
+        ofxPanel gui;
+        ofParameterGroup prm;
+        ofParameter<bool> bEqui;
+        ofParameter<bool> bDraw2dGuide;
+        ofParameter<bool> bDraw3dGuide;
+        ofParameter<glm::vec3> spherePos;
+        ofParameter<float> radius;
+
 };

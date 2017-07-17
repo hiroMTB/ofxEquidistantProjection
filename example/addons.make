@@ -1,1 +1,2 @@
 ofxEquidistantProjection
+ofxGui
