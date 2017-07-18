@@ -30,7 +30,15 @@ class ofApp: public ofBaseApp{
         ofParameter<bool> bEqui;
         ofParameter<bool> bDraw2dGuide;
         ofParameter<bool> bDraw3dGuide;
+        ofParameter<bool> bDrawPoints;
+        ofParameter<bool> bDrawLines;
+        ofParameter<bool> bDrawTriangles;
+    
         ofParameter<glm::vec3> spherePos;
         ofParameter<float> radius;
+    
+    
+        ofVboMesh vboPoints;
+        ofVboMesh vboLines;
 
 };

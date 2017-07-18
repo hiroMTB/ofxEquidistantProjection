@@ -59,12 +59,13 @@
 		1C0DA2561397A7DE0246858B /* ofxGuiGroup.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxGuiGroup.h; path = ../../../addons/ofxGui/src/ofxGuiGroup.h; sourceTree = SOURCE_ROOT; };
 		2834D88A62CD23F3DE2C47D1 /* ofxButton.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxButton.h; path = ../../../addons/ofxGui/src/ofxButton.h; sourceTree = SOURCE_ROOT; };
 		44B351490B620D04E1E7C52D /* ofxInputField.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxInputField.cpp; path = ../../../addons/ofxGui/src/ofxInputField.cpp; sourceTree = SOURCE_ROOT; };
-		45BCB9D31F1D0FA200F63A37 /* HyperbolicLens.vert */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = HyperbolicLens.vert; sourceTree = "<group>"; };
-		45BCB9D41F1D0FA200F63A37 /* shader.frag */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shader.frag; sourceTree = "<group>"; };
-		45BCB9D51F1D0FA200F63A37 /* shader.geom */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shader.geom; sourceTree = "<group>"; };
-		45BCB9D61F1D0FA200F63A37 /* shader.vert */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shader.vert; sourceTree = "<group>"; };
 		45BCB9D81F1D0FA200F63A37 /* shader.frag */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shader.frag; sourceTree = "<group>"; };
 		45BCB9D91F1D0FA200F63A37 /* shader.vert */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shader.vert; sourceTree = "<group>"; };
+		45F1C8851F1E746F00A678E9 /* line.geom */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = line.geom; sourceTree = "<group>"; };
+		45F1C8861F1E746F00A678E9 /* pass.frag */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = pass.frag; sourceTree = "<group>"; };
+		45F1C8871F1E746F00A678E9 /* pass.vert */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = pass.vert; sourceTree = "<group>"; };
+		45F1C8881F1E746F00A678E9 /* point.geom */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = point.geom; sourceTree = "<group>"; };
+		45F1C8891F1E746F00A678E9 /* tri.geom */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = tri.geom; sourceTree = "<group>"; };
 		489B196944B06ADC2A071076 /* ofxColorPicker.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxColorPicker.h; path = ../../../addons/ofxGui/src/ofxColorPicker.h; sourceTree = SOURCE_ROOT; };
 		52AFA1F08C420992CAAAE648 /* ofxSlider.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxSlider.h; path = ../../../addons/ofxGui/src/ofxSlider.h; sourceTree = SOURCE_ROOT; };
 		681123C972905CDD3D912921 /* ofxEquidistantProjection.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxEquidistantProjection.h; path = ../../../addons/ofxEquidistantProjection/src/ofxEquidistantProjection.h; sourceTree = SOURCE_ROOT; };
@@ -123,10 +124,11 @@
 		45BCB9D21F1D0FA200F63A37 /* shadersGL2 */ = {
 			isa = PBXGroup;
 			children = (
-				45BCB9D31F1D0FA200F63A37 /* HyperbolicLens.vert */,
-				45BCB9D41F1D0FA200F63A37 /* shader.frag */,
-				45BCB9D51F1D0FA200F63A37 /* shader.geom */,
-				45BCB9D61F1D0FA200F63A37 /* shader.vert */,
+				45F1C8871F1E746F00A678E9 /* pass.vert */,
+				45F1C8881F1E746F00A678E9 /* point.geom */,
+				45F1C8851F1E746F00A678E9 /* line.geom */,
+				45F1C8891F1E746F00A678E9 /* tri.geom */,
+				45F1C8861F1E746F00A678E9 /* pass.frag */,
 			);
 			path = shadersGL2;
 			sourceTree = "<group>";

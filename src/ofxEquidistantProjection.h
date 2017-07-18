@@ -20,28 +20,68 @@ public:
 #ifdef TARGET_OPENGLES
         static_assert(1, "ofxEquidistantCam does not support openGL ES");
 #else
-        
-        shader.setGeometryInputType(GL_TRIANGLE_STRIP);
-        shader.setGeometryOutputType(GL_TRIANGLE_STRIP);
-        shader.setGeometryOutputCount(3*4);
 
+        int maxOut = triShader.getGeometryMaxOutputCount();
+        
+        pointShader.setGeometryInputType(GL_POINTS);
+        pointShader.setGeometryOutputType(GL_POINTS);
+        pointShader.setGeometryOutputCount(1);
+
+        lineShader.setGeometryInputType(GL_LINES);
+        lineShader.setGeometryOutputType(GL_LINES);
+        lineShader.setGeometryOutputCount(128);
+
+        triShader.setGeometryInputType(GL_TRIANGLES);
+        triShader.setGeometryOutputType(GL_TRIANGLES);
+        triShader.setGeometryOutputCount(3*4);
+        
         if(ofIsGLProgrammableRenderer()){
-            shader.load("shadersGL3/shader.vert", "shadersGL3/shader.frag", "shadersGL3/shader.geom");
+            pointShader.load("shadersGL3/pass.vert", "shadersGL3/pass.frag", "shadersGL3/point.geom");
+            lineShader.load("shadersGL3/pass.vert", "shadersGL3/pass.frag", "shadersGL3/line.geom");
+            triShader.load("shadersGL3/pass.vert", "shadersGL3/pass.frag", "shadersGL3/tri.geom");
         }else{
-            shader.load("shadersGL2/shader.vert", "shadersGL2/shader.frag", "shadersGL2/shader.geom");
+            pointShader.load("shadersGL2/pass.vert", "shadersGL2/pass.frag", "shadersGL2/point.geom");
+            lineShader.load("shadersGL2/pass.vert", "shadersGL2/pass.frag", "shadersGL2/line.geom");
+            triShader.load("shadersGL2/pass.vert", "shadersGL2/pass.frag", "shadersGL2/tri.geom");
         }
 #endif
     }
     
-    void begin(){
+    void begin(GLenum type){
         cam.begin();
-        shader.begin();
-        shader.setUniform3f("eye", cam.getPosition());
+        switch(type){
+            case GL_POINTS:
+                pointShader.begin();
+                pointShader.setUniform3f("eye", cam.getPosition());
+                break;
+            
+            case GL_LINES:
+                lineShader.begin();
+                lineShader.setUniform3f("eye", cam.getPosition());
+                break;
+            
+            case GL_TRIANGLES:
+                triShader.begin();
+                triShader.setUniform3f("eye", cam.getPosition());
+                break;
+        }
     }
     
-    void end(){
+    void end(GLenum type){
+        switch(type){
+            case GL_POINTS:
+                pointShader.end();
+                break;
+
+            case GL_LINES:
+                lineShader.end();
+                break;
+
+            case GL_TRIANGLES:
+                triShader.end();
+            break;
+        }
         cam.end();
-        shader.end();
     }
 
     ofCamera & getCamera(){
@@ -69,7 +109,10 @@ public:
     }
     
     private:
-        ofShader shader;
+        ofShader pointShader;
+        ofShader lineShader;
+        ofShader triShader;
+    
         ofCamera cam;
 };
 

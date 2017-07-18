@@ -1,0 +1,26 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+    
+    "clang.cxxflags": [
+        "-std=c++11"
+    ],
+
+    "editor.minimap.enabled": true,
+
+    "workbench.colorTheme": "Visual Studio Light",
+
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+
+        "obj": true,
+        "*.xcodeproj":true,
+        "*.xcconfig": true,
+        "*.plist": true
+    }
+
+
+}
