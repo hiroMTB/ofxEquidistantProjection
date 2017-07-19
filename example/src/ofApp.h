@@ -4,6 +4,9 @@
 #include "ofxEquidistantProjection.h"
 #include "ofxGui.h"
 
+using namespace ofxequidistantprojection;
+using namespace glm;
+
 class ofApp: public ofBaseApp{
 	public:
 		void setup();
@@ -20,6 +23,9 @@ class ofApp: public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 
+        void begin(ShaderType type);
+        void end(ShaderType type);
+        
         ofxEquidistantProjection proj;
     
         ofSpherePrimitive sphere;

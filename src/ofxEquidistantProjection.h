@@ -10,6 +10,14 @@
 
 #include "ofMain.h"
 
+namespace ofxequidistantprojection{
+
+    enum class ShaderType{
+        POINT_SHADER,
+        LINE_SHADER,
+        TRIANGLE_SHADER
+    };
+
 class ofxEquidistantProjection{
     
 public:
@@ -28,8 +36,8 @@ public:
         pointShader.setGeometryOutputCount(1);
 
         lineShader.setGeometryInputType(GL_LINES);
-        lineShader.setGeometryOutputType(GL_LINES);
-        lineShader.setGeometryOutputCount(2);
+        lineShader.setGeometryOutputType(GL_LINE_STRIP);
+        lineShader.setGeometryOutputCount(128);
 
         triShader.setGeometryInputType(GL_TRIANGLES);
         triShader.setGeometryOutputType(GL_TRIANGLES);
@@ -47,39 +55,47 @@ public:
 #endif
     }
     
-    void begin(GLenum type){
+    void begin(ShaderType type){
         cam.begin();
         switch(type){
-            case GL_POINTS:
+            case ShaderType::POINT_SHADER:
                 pointShader.begin();
                 pointShader.setUniform3f("eye", cam.getPosition());
                 break;
             
-            case GL_LINES:
+            case ShaderType::LINE_SHADER:
                 lineShader.begin();
                 lineShader.setUniform3f("eye", cam.getPosition());
                 break;
             
-            case GL_TRIANGLES:
+            case ShaderType::TRIANGLE_SHADER:
                 triShader.begin();
                 triShader.setUniform3f("eye", cam.getPosition());
+                break;
+
+            default:
+                static_assert(1, "ofxEquidistantProjection : Unsupported GL primitive");
                 break;
         }
     }
     
-    void end(GLenum type){
+    void end(ShaderType type){
         switch(type){
-            case GL_POINTS:
+            case ShaderType::POINT_SHADER:
                 pointShader.end();
                 break;
 
-            case GL_LINES:
+            case ShaderType::LINE_SHADER:
                 lineShader.end();
                 break;
 
-            case GL_TRIANGLES:
+            case ShaderType::TRIANGLE_SHADER:
                 triShader.end();
             break;
+
+            default:
+                static_assert(1, "ofxEquidistantProjection : Unsupported GL primitive");
+                break;
         }
         cam.end();
     }
@@ -115,5 +131,5 @@ public:
     
         ofCamera cam;
 };
-
+} // namespace ofxequidistantprojection
 #endif /* OFX_EQUIDISANT_PROJECTION_H */

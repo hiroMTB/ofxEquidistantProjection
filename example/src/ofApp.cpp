@@ -41,7 +41,7 @@ void ofApp::setup(){
         vboPoints.addVertex(vec3(ofRandom(-2,2), ofRandom(-2,2), ofRandom(-2,2)));
     }
     
-    vboLines.setMode(OF_PRIMITIVE_LINE_STRIP);
+    vboLines.setMode(OF_PRIMITIVE_LINES);
     for(int i=0; i<100; i++){
         vboLines.addVertex(vec3(ofRandom(-2,2), ofRandom(-2,2), ofRandom(-2,2)));
     }
@@ -51,31 +51,35 @@ void ofApp::setup(){
 void ofApp::update(){
 }
 
+void ofApp::begin(ShaderType type){
+    ofPushMatrix();
+    bEqui ? proj.begin(type) : normalCam.begin();
+    ofDrawAxis(10);
+    ofTranslate(objPos);
+    ofScale(objScale, objScale, objScale);
+}
+
+void ofApp::end(ShaderType type){
+    bEqui ? proj.end(type) : normalCam.end();
+    ofPopMatrix();
+}
+
 //--------------------------------------------------------------
 void ofApp::draw(){
 
     ofBackground(0);
         
     if(bDrawPoints){
-        // draw points
-        ofPushMatrix();
-        bEqui ? proj.begin(GL_POINTS) : normalCam.begin();
-        ofTranslate(objPos);
-        ofScale(objScale, objScale, objScale);
+        begin(ShaderType::POINT_SHADER);
         ofSetColor(255);
         vboPoints.draw();
         sphere.draw(OF_MESH_POINTS); // this does not work since geom input is GL_TRIANGLES    
-        bEqui ? proj.end(GL_POINTS) : normalCam.end();
-        ofPopMatrix();    
+        end(ShaderType::POINT_SHADER);
     }
 
     if(bDrawLines){
-        // draw lines
-        ofPushMatrix();
-        bEqui ? proj.begin(GL_LINES) : normalCam.begin();
-        ofDrawAxis(10);
-        ofTranslate(objPos);
-        ofScale(objScale, objScale, objScale);
+        begin(ShaderType::LINE_SHADER);
+        ofSetColor(255);
         vboLines.draw();
         
         if(bDraw3dGuide){
@@ -83,28 +87,14 @@ void ofApp::draw(){
             ofSetColor(0,0,255);
             proj.drawEquidistantHemisphere(10);
         }
-        
-        glBegin(GL_LINES);
-        for(int i=0; i<100; i++){
-            glVertex3f(ofRandom(-2,2), ofRandom(-2,2), ofRandom(-2,2));
-            glVertex3f(ofRandom(-2,2), ofRandom(-2,2), ofRandom(-2,2));
-        }
-        glEnd();
-
-        bEqui ? proj.end(GL_LINES) : normalCam.end();
-        ofPopMatrix();
+        end(ShaderType::LINE_SHADER);
     }
     
     if(bDrawTriangles){
-        // draw polygons
-        ofPushMatrix();
-        bEqui ? proj.begin(GL_TRIANGLES) : normalCam.begin();
-        ofTranslate(objPos);
-        ofScale(objScale, objScale, objScale);
+        begin(ShaderType::TRIANGLE_SHADER);
         ofSetColor(255);
         sphere.drawWireframe();
-        bEqui ? proj.end(GL_TRIANGLES) : normalCam.end();
-        ofPopMatrix();
+        end(ShaderType::TRIANGLE_SHADER);
     }    
     
     if(bDraw2dGuide){
