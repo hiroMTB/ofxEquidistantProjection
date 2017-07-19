@@ -34,10 +34,9 @@ class ofApp: public ofBaseApp{
         ofParameter<bool> bDrawLines;
         ofParameter<bool> bDrawTriangles;
     
-        ofParameter<glm::vec3> spherePos;
-        ofParameter<float> radius;
-    
-    
+        ofParameter<glm::vec3> objPos;
+        ofParameter<float> objScale;
+        
         ofVboMesh vboPoints;
         ofVboMesh vboLines;
 

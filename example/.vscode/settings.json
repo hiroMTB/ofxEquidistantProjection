@@ -7,7 +7,7 @@
 
     "editor.minimap.enabled": true,
 
-    "workbench.colorTheme": "Visual Studio Light",
+    "workbench.colorTheme": "Visual Studio Dark",
 
     "files.exclude": {
         "**/.git": true,
@@ -20,7 +20,9 @@
         "*.xcodeproj":true,
         "*.xcconfig": true,
         "*.plist": true
+    },
+    "files.associations": {
+        "array": "cpp",
+        "hashtable": "cpp"
     }
-
-
 }

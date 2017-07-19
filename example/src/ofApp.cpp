@@ -8,9 +8,9 @@ void ofApp::setup(){
     ofSetColor(255);
     ofSetCircleResolution(50);
     
-    sphere.setRadius(radius);
+    sphere.setRadius(10);
     sphere.setResolution(10);
-    sphere.setPosition(0, 0, 110);
+    sphere.setPosition(0, 0, 0);
     sphere.setOrientation(ofVec3f(90,0,0));
     
     proj.setup();
@@ -31,8 +31,8 @@ void ofApp::setup(){
     prm.add(bDrawLines.set("Draw Lines", true));
     prm.add(bDrawTriangles.set("Draw Triangles", true));
 
-    prm.add(spherePos.set("Sphere Position", vec3(0,0,0), vec3(-200,-200,-200), vec3(200,200,200)));
-    prm.add(radius.set("Sphere Radius", 10, 0, 100));
+    prm.add(objPos.set("Object Position", vec3(0,0,0), vec3(-200,-200,-200), vec3(200,200,200)));
+    prm.add(objScale.set("Object Scale", 1, 0, 10.0));
 
     gui.add(prm);
     
@@ -49,20 +49,20 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    sphere.setPosition(spherePos);
-    sphere.setRadius(radius);
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
 
     ofBackground(0);
-    ofSetColor(255);
         
     if(bDrawPoints){
         // draw points
         ofPushMatrix();
         bEqui ? proj.begin(GL_POINTS) : normalCam.begin();
+        ofTranslate(objPos);
+        ofScale(objScale, objScale, objScale);
+        ofSetColor(255);
         vboPoints.draw();
         sphere.draw(OF_MESH_POINTS); // this does not work since geom input is GL_TRIANGLES    
         bEqui ? proj.end(GL_POINTS) : normalCam.end();
@@ -73,20 +73,24 @@ void ofApp::draw(){
         // draw lines
         ofPushMatrix();
         bEqui ? proj.begin(GL_LINES) : normalCam.begin();
-        vboLines.draw();
         ofDrawAxis(10);
+        ofTranslate(objPos);
+        ofScale(objScale, objScale, objScale);
+        vboLines.draw();
+        
         if(bDraw3dGuide){
             ofNoFill();
             ofSetColor(0,0,255);
-            proj.drawEquidistantHemisphere(radius);
+            proj.drawEquidistantHemisphere(10);
         }
-
+        
         glBegin(GL_LINES);
         for(int i=0; i<100; i++){
             glVertex3f(ofRandom(-2,2), ofRandom(-2,2), ofRandom(-2,2));
             glVertex3f(ofRandom(-2,2), ofRandom(-2,2), ofRandom(-2,2));
         }
         glEnd();
+
         bEqui ? proj.end(GL_LINES) : normalCam.end();
         ofPopMatrix();
     }
@@ -95,6 +99,9 @@ void ofApp::draw(){
         // draw polygons
         ofPushMatrix();
         bEqui ? proj.begin(GL_TRIANGLES) : normalCam.begin();
+        ofTranslate(objPos);
+        ofScale(objScale, objScale, objScale);
+        ofSetColor(255);
         sphere.drawWireframe();
         bEqui ? proj.end(GL_TRIANGLES) : normalCam.end();
         ofPopMatrix();
@@ -104,7 +111,7 @@ void ofApp::draw(){
         ofPushMatrix();
         ofSetupScreenOrtho();
         ofTranslate(ofGetWidth()/2, ofGetHeight()/2);
-        ofSetColor(0, 255, 0);
+        ofSetColor(0,255,0);
         ofNoFill();
         proj.draw2dCircles(ofGetWidth()/2);
         ofPopMatrix();

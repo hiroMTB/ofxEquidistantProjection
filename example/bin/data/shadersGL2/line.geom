@@ -38,15 +38,14 @@ vec4 equidistant( vec4 inVec ){
 void main(void)
 {
     // Original Vertex
-    
+    int i;
     for(i=0; i<gl_VerticesIn; i++){
         vec4 p = equidistant(gl_PositionIn[i]);
-        gl_Position = p;
+        gl_Position = gl_PositionIn[i];
         gl_FrontColor = gl_FrontColorIn[0];
         EmitVertex();
     }
-    
-    EndPrimitive();
 
+    EndPrimitive();
     
 }

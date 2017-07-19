@@ -29,7 +29,7 @@ public:
 
         lineShader.setGeometryInputType(GL_LINES);
         lineShader.setGeometryOutputType(GL_LINES);
-        lineShader.setGeometryOutputCount(128);
+        lineShader.setGeometryOutputCount(2);
 
         triShader.setGeometryInputType(GL_TRIANGLES);
         triShader.setGeometryOutputType(GL_TRIANGLES);

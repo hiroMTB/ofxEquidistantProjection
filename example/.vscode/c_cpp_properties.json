@@ -19,7 +19,8 @@
                     "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/",
                     "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/4.2.1",
                     "${workspaceRoot}/../../../libs",
-                    "${workspaceRoot}/../../../addons"
+                    "${workspaceRoot}/../../../addons",
+                    "${workspaceRoot}"
                 ]
             },
             "intelliSenseMode": "clang-x64"
@@ -35,7 +36,8 @@
                 "databaseFilename": "",
                 "path": [
                     "/usr/include",
-                    "/usr/local/include"
+                    "/usr/local/include",
+                    "${workspaceRoot}"
                 ]
             },
             "intelliSenseMode": "clang-x64"
@@ -49,10 +51,12 @@
                 "limitSymbolsToIncludedHeaders": true,
                 "databaseFilename": "",
                 "path": [
-                    "C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/include/*"
+                    "C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/include/*",
+                    "${workspaceRoot}"
                 ]
             },
             "intelliSenseMode": "msvc-x64"
         }
-    ]
+    ],
+    "version": 2
 }
