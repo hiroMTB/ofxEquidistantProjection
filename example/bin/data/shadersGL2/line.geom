@@ -21,31 +21,21 @@ vec4 equidistant( vec4 inVec ){
     return outVec;
 }
 
-
-//void GenerateLine(vec4 v1, vec4 v2){
-//
-//    gl_Position = v1;
-//    gl_FrontColor = gl_FrontColorIn[0];
-//    EmitVertex();
-//
-//    gl_Position = v2;
-//    gl_FrontColor = gl_FrontColorIn[0];
-//    EmitVertex();
-//    
-//    EndPrimitive();
-//}
-
 void main(void)
 {
-    // Original Vertex
+    float sub = 100;
+
+    vec4 p0 = gl_PositionIn[0];
+    vec4 p1 = gl_PositionIn[1];
+    vec4 dir = (p1 - p0) / sub;
+
     int i;
-    for(i=0; i<gl_VerticesIn; i++){
-        vec4 p = equidistant(gl_PositionIn[i]);
-        gl_Position = gl_PositionIn[i];
+    for(i=0; i<sub; i++){
+        vec4 ep = equidistant(p0 + dir * i);
+        gl_Position = ep;
         gl_FrontColor = gl_FrontColorIn[0];
         EmitVertex();
     }
 
     EndPrimitive();
-    
 }
