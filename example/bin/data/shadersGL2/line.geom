@@ -3,7 +3,8 @@
 
 uniform vec3 eye;
 
-vec4 equidistant( vec4 inVec ){
+vec4 equidistant( vec4 inVec )
+{
     
     vec4 p = gl_ModelViewMatrix * inVec;
     vec4 v = vec4(eye, 0);

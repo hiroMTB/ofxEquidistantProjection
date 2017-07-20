@@ -3,7 +3,8 @@
 
 uniform vec3 eye;
 
-vec4 equidistant( vec4 inVec ){
+vec4 equidistant( vec4 inVec )
+{
     
     vec4 p = gl_ModelViewMatrix * inVec;
     vec4 v = vec4(eye, 0);
@@ -21,13 +22,11 @@ vec4 equidistant( vec4 inVec ){
     return outVec;
 }
 
-
-void GeneratePoint(vec4 v1){
-
+void GeneratePoint(vec4 v1)
+{
     gl_Position = v1;
     gl_FrontColor = gl_FrontColorIn[0];
     EmitVertex();
-    
 }
 
 void main(void)

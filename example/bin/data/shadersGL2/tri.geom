@@ -3,8 +3,8 @@
 
 uniform vec3 eye;
 
-vec4 equidistant( vec4 inVec ){
-    
+vec4 equidistant( vec4 inVec )
+{    
     vec4 p = gl_ModelViewMatrix * inVec;
     vec4 v = vec4(eye, 0);
     p.xyz = p.xyz/p.w;
@@ -22,8 +22,8 @@ vec4 equidistant( vec4 inVec ){
 }
 
 
-void GenerateTriangle(vec4 v1, vec4 v2, vec4 v3){
-
+void GenerateTriangle(vec4 v1, vec4 v2, vec4 v3)
+{
     gl_Position = v1;
     gl_FrontColor = gl_FrontColorIn[0];
     EmitVertex();
