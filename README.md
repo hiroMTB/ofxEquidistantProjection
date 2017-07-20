@@ -10,12 +10,12 @@ Based on this paper (Japanese)
 + https://www.jstage.jst.go.jp/article/iteac/2009/0/2009__13-2-1_/_article/-char/ja/
 
 ## TODO
-+ add GL3 shader
 + check on Windows platform
 + reconsider about naming, maybe ofxEquidistantCam? or ofxEisheyeCam?
 + consider about pull request against ofxDomemaster (https://github.com/charlesveasey/ofxDomemaster)
 + add Inv-equidistant projection shader which convert 2D texture data to 3D point data.
 
 ## DONE
-+ GL2 shader works ok
++ add GL2 shader
++ add GL3 shader
 + add geometry shader for polygon/line interporation
