@@ -2,16 +2,10 @@
 
 using namespace glm;
 
-//--------------------------------------------------------------
 void ofApp::setup(){
     ofBackground(0);
     ofSetColor(255);
     ofSetCircleResolution(50);
-    
-    sphere.setRadius(10);
-    sphere.setResolution(10);
-    sphere.setPosition(0, 0, 0);
-    sphere.setOrientation(ofVec3f(90,0,0));
     
     proj.setup();
     proj.getCamera().setPosition(0,0,0);
@@ -33,22 +27,34 @@ void ofApp::setup(){
 
     prm.add(objPos.set("Object Position", vec3(0,0,0), vec3(-200,-200,-200), vec3(200,200,200)));
     prm.add(objScale.set("Object Scale", 1, 0, 10.0));
-
+    gui.add(fps.setup("fps", "0"));
     gui.add(prm);
     
     vboPoints.setMode(OF_PRIMITIVE_POINTS);
     for(int i=0; i<100; i++){
+        vboPoints.addColor(ofColor(255,255,255));
         vboPoints.addVertex(vec3(ofRandom(-2,2), ofRandom(-2,2), ofRandom(-2,2)));
     }
     
     vboLines.setMode(OF_PRIMITIVE_LINES);
     for(int i=0; i<100; i++){
+        vboLines.addColor(ofColor(255,255,255));
         vboLines.addVertex(vec3(ofRandom(-2,2), ofRandom(-2,2), ofRandom(-2,2)));
+    }
+    
+    sphere.setUseVbo(true);
+    sphere.setRadius(10);
+    sphere.setResolution(10);
+    sphere.setPosition(0, 0, 0);
+    sphere.setOrientation(ofVec3f(90,0,0));
+    vector<vec3> & vs = sphere.getMesh().getVertices();
+    for(int i=0; i<vs.size(); i++){
+        sphere.getMesh().addColor(ofFloatColor(1,1,1,1));
     }
 }
 
-//--------------------------------------------------------------
 void ofApp::update(){
+    fps = ofToString(ofGetFrameRate());
 }
 
 void ofApp::begin(ShaderType type){
@@ -64,16 +70,18 @@ void ofApp::end(ShaderType type){
     ofPopMatrix();
 }
 
-//--------------------------------------------------------------
 void ofApp::draw(){
 
-    ofBackground(0);
+    ofBackground(150);
         
     if(bDrawPoints){
+        glPointSize(3);
         begin(ShaderType::POINT_SHADER);
         ofSetColor(255);
+        glColor4f(255,255,255,255);
         vboPoints.draw();
-        sphere.draw(OF_MESH_POINTS); // this does not work since geom input is GL_TRIANGLES    
+        sphere.getMesh().setMode(OF_PRIMITIVE_POINTS);
+        sphere.draw(OF_MESH_POINTS);
         end(ShaderType::POINT_SHADER);
     }
 
@@ -93,6 +101,7 @@ void ofApp::draw(){
     if(bDrawTriangles){
         begin(ShaderType::TRIANGLE_SHADER);
         ofSetColor(255);
+        sphere.getMesh().setMode(OF_PRIMITIVE_TRIANGLES);
         sphere.drawWireframe();
         end(ShaderType::TRIANGLE_SHADER);
     }    
@@ -110,49 +119,4 @@ void ofApp::draw(){
     ofSetupScreenOrtho();
     ofDisableDepthTest();
     gui.draw();
-}
-
-//--------------------------------------------------------------
-void ofApp::keyPressed(int key){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::keyReleased(int key){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseMoved(int x, int y){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseDragged(int x, int y, int button){
-    
-}
-
-//--------------------------------------------------------------
-void ofApp::mousePressed(int x, int y, int button){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseReleased(int x, int y, int button){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::windowResized(int w, int h){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::gotMessage(ofMessage msg){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::dragEvent(ofDragInfo dragInfo){ 
-
 }
