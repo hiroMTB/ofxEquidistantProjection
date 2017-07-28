@@ -24,7 +24,7 @@ public:
     
     ofxEquidistantProjection(){};
     
-    void setup(){
+    bool setup(){
 #ifdef TARGET_OPENGLES
         static_assert(1, "ofxEquidistantCam does not support openGL ES");
 #else
@@ -52,6 +52,8 @@ public:
             lineShader.load("shadersGL2/pass.vert", "shadersGL2/pass.frag", "shadersGL2/line.geom");
             triShader.load("shadersGL2/pass.vert", "shadersGL2/pass.frag", "shadersGL2/tri.geom");
         }
+        
+        return pointShader.isLoaded() && lineShader.isLoaded() && triShader.isLoaded();
 #endif
     }
     
@@ -105,7 +107,7 @@ public:
     }
     
     // 3D & 2D guide drawer
-    void drawEquidistantHemisphere(float radius){
+    static void drawEquidistantHemisphere(float radius){
         
         int nCircles = 8;
         for(int i=0; i<nCircles; i++){
@@ -116,7 +118,7 @@ public:
         }
     }
     
-    void draw2dCircles(float radius){
+    static void draw2dCircles(float radius){
         int nCircles = 8;
         for(int i=0; i<nCircles; i++){
             float r = radius/nCircles * (i+1);
