@@ -5,7 +5,6 @@ layout (line_strip) out;
 layout (max_vertices = 128) out;
 
 uniform mat4 modelViewMatrix;
-uniform vec3 eye;
 
 in vec4 vColor[];
 
@@ -13,11 +12,9 @@ out vec4 Color;
 
 vec4 equidistant( vec4 inVec )
 {    
-    vec4 p = modelViewMatrix * inVec;
-    vec4 v = vec4(eye, 0);
-    p.xyz = p.xyz/p.w;
+    vec4 s = modelViewMatrix * inVec;
+    s.xyz = s.xyz/s.w;
     
-    vec4 s = p - v;
     float d = length(s.xyz);
     float t = acos( abs(s.z/d) ) / 3.14159265 * 2;
     float h = length(s.xy);

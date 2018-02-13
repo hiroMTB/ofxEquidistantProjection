@@ -62,17 +62,14 @@ public:
         switch(type){
             case ShaderType::POINT_SHADER:
                 pointShader.begin();
-                pointShader.setUniform3f("eye", cam.getPosition());
                 break;
             
             case ShaderType::LINE_SHADER:
                 lineShader.begin();
-                lineShader.setUniform3f("eye", cam.getPosition());
                 break;
             
             case ShaderType::TRIANGLE_SHADER:
                 triShader.begin();
-                triShader.setUniform3f("eye", cam.getPosition());
                 break;
 
             default:
