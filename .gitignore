@@ -41,6 +41,11 @@ xcuserdata
 *.layout
 *.cbTemp
 
+*.plist
+*.xcconfig
+*.pbxproj
+*.xcscheme
+
 # Visual Studio
 *.sdf
 *.opensdf
@@ -105,3 +110,6 @@ Desktop.ini
 *.log
 *.sql
 *.sqlite
+
+*.make
+Makefile
