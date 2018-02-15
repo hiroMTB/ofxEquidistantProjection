@@ -1,22 +1,6 @@
 #version 120
 #extension GL_EXT_geometry_shader4 : enable
-
-vec4 equidistant( vec4 inVec )
-{    
-    vec4 s = gl_ModelViewMatrix * inVec;
-    s.xyz = s.xyz/s.w;
-    
-    float d = length(s.xyz);
-    float t = acos( abs(s.z/d) ) / 3.14159265 * 2;
-    float h = length(s.xy);
-    
-    if(s.z>0.0) t = 2.0 - t;
-    
-    vec4 outVec = t * s/h;
-    outVec.w = 1;
-    return outVec;
-}
-
+#pragma include "../common.glsl"
 
 void GenerateTriangle(vec4 v1, vec4 v2, vec4 v3)
 {
@@ -46,12 +30,12 @@ void main(void)
     vec4 P1 = (iP1 + iP2) * 0.5;
     vec4 P2 = (iP2 + iP0) * 0.5;
     
-    iP0 = equidistant(iP0);
-    iP1 = equidistant(iP1);
-    iP2 = equidistant(iP2);
-    P0 = equidistant(P0);
-    P1 = equidistant(P1);
-    P2 = equidistant(P2);
+    iP0 = equidistant(gl_ModelViewMatrix, iP0);
+    iP1 = equidistant(gl_ModelViewMatrix, iP1);
+    iP2 = equidistant(gl_ModelViewMatrix, iP2);
+    P0 = equidistant(gl_ModelViewMatrix, P0);
+    P1 = equidistant(gl_ModelViewMatrix, P1);
+    P2 = equidistant(gl_ModelViewMatrix, P2);
     
     GenerateTriangle(P0, P1, P2);
     GenerateTriangle(iP0, P0, P2);
