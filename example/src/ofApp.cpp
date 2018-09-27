@@ -15,7 +15,7 @@ void ofApp::setup(){
     normalCam.setNearClip(0.01);
     normalCam.setFarClip(1000);
     normalCam.setDistance(10);
-    normalCam.disableMouseInput();
+    //normalCam.disableMouseInput();
     
     gui.setup();
     prm.add(bEqui.set("Equidistant Projection", true));
