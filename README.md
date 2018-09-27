@@ -1,9 +1,14 @@
+
+# ofxEquidistantProjection
 [![Build Status](https://travis-ci.org/hiroMTB/ofxEquidistantProjection.svg?branch=master)](https://travis-ci.org/hiroMTB/ofxEquidistantProjection)
 [![Build status](https://ci.appveyor.com/api/projects/status/fh9f01w6yjqsyty7?svg=true)](https://ci.appveyor.com/project/hiroMTB/ofxequidistantprojection)
 
-![screenshot](screenshot.png)
+3D view
+![screenshot2](screenshot1.png)
 
-# ofxEquidistantProjection (work in progress)
+Rendered texture
+![screenshot2](screenshot2.png)
+
 openFrameworks addon for equidistant projection (hemisphere mapping, domemaster for planetarium material)
 
 Based on this paper (Japanese)
