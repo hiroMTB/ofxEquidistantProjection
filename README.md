@@ -26,3 +26,7 @@ Based on this paper (Japanese)
 + add GL2 shader
 + add GL3 shader
 + add geometry shader for polygon/line interporation
+
+## Cubemap VS ofxEquidistantProjection
+![Cubemap, rendered with another addon](cubemap_00250.png)
+![ofxEquidistantProjection, rendered with this addon](ofxEquidistantProjection_00250.png)
