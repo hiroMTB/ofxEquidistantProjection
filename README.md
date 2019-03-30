@@ -28,5 +28,8 @@ Based on this paper (Japanese)
 + add geometry shader for polygon/line interporation
 
 ## Cubemap VS ofxEquidistantProjection
-![Cubemap, rendered with another addon](cubemap_00250.png)
-![ofxEquidistantProjection, rendered with this addon](ofxEquidistantProjection_00250.png)
+Cubemap, rendered with another addon
+![cubemap](cubemap_00250.png)
+
+ofxEquidistantProjection, rendered with this addon
+![ofxEquidistantProjection](ofxEquidistantProjection_00250.png)
