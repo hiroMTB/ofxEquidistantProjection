@@ -6,7 +6,7 @@
 3D view
 ![screenshot2](screenshot1.png)
 
-Rendered texture
+Rendered texture (domemaster format)
 ![screenshot2](screenshot2.png)
 
 openFrameworks addon for equidistant projection (hemisphere mapping, domemaster for planetarium material)
